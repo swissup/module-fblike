@@ -7,10 +7,12 @@
                 <locale>en_US</locale>
             </general>
             <product>
+                <enabled>0</enabled>
                 <layout>button_count</layout>
                 <share>1</share>
             </product>
             <category>
+                <enabled>0</enabled>
                 <layout>button_count</layout>
                 <share>1</share>
             </category>
