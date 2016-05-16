@@ -17,5 +17,10 @@
                 <share>1</share>
             </category>
         </fblike>
+        <subscriptionchecker>
+            <ignore>
+                <fblike/>
+            </ignore>
+        </subscriptionchecker>
     </default>
 </config>
