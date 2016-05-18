@@ -17,13 +17,12 @@ class Button extends Template
     public function __construct(
         Template\Context $context,
         \Magento\Framework\Registry $registry,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         array $data = []
     ) {
-        parent::__construct($context, $data);
-        $this->_scopeConfig   = $scopeConfig;
+        $this->_scopeConfig   = $context->getScopeConfig();
         $this->_coreRegistry = $registry;
         $this->_product = $this->_coreRegistry->registry('product');
+        parent::__construct($context, $data);
     }
 
     public function getProductUrl()

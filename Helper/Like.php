@@ -14,12 +14,11 @@ class Like extends AbstractHelper
     protected $scopeConfig;
 
     public function __construct(
-        \Magento\Framework\App\Helper\Context $context,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        array $data = []
+        \Magento\Framework\App\Helper\Context $context
     ) {
-        parent::__construct($context, $data);
-        $this->_scopeConfig = $scopeConfig;
+        $this->_scopeConfig = $context->getScopeConfig();
+
+        parent::__construct($context);
     }
 
     public function getProductLike($product)
