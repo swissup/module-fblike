@@ -2,9 +2,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="swissup" translate="label" sortOrder="300">
-            <label>Swissup</label>
-        </tab>
         <section id="fblike" translate="label" type="text" sortOrder="604" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
             <label>Facebook Like Button</label>
