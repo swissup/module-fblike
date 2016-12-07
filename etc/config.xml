@@ -8,13 +8,19 @@
             </general>
             <product>
                 <enabled>0</enabled>
+                <action>like</action>
+                <colorscheme>light</colorscheme>
                 <layout>button_count</layout>
                 <share>1</share>
+                <show_faces>0</show_faces>
             </product>
             <category>
                 <enabled>0</enabled>
+                <action>like</action>
+                <colorscheme>light</colorscheme>
                 <layout>button_count</layout>
                 <share>1</share>
+                <show_faces>0</show_faces>
             </category>
         </fblike>
         <subscriptionchecker>
