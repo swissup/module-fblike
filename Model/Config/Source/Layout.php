@@ -15,7 +15,8 @@ class Layout implements \Magento\Framework\Option\ArrayInterface
             ['value' => "standard", 'label' => __('Standard')],
             ['value' => "button_count", 'label' => __('Button Count')],
             ['value' => "button", 'label' => __('Button')],
-            ['value' => "box_count", 'label' => __('Box Count')]
+            ['value' => "box_count", 'label' => __('Box Count')],
+            ['value' => "custom", 'label' => __('Custom Button')]
         ];
         return $result;
     }
