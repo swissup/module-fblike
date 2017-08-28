@@ -2,16 +2,6 @@
 <?php if ($config["enabled"]) : ?>
     <div style="margin-top:10px;">
         <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0],
-              locale = '<?php echo $block->getButtonLocale() ?>',
-              appId = '<?php echo $block->getFacebookAppId() ?>';
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/"+ locale +"/sdk.js#xfbml=1&version=v2.5&appId=" + appId;
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-
         <?php if ($config["layout"] === "custom") : ?>
           <p class="fbl-custom">
             <a class="like"
@@ -30,4 +20,15 @@
           </div>
         <?php endif; ?>
     </div>
+    <script type="text/javascript">
+        require([
+            'jquery',
+            'fbl'
+        ], function ($, fbl) {
+            var locale = '<?php echo $block->getButtonLocale() ?>';
+            var appId = '<?php echo $block->getFacebookAppId() ?>';
+            fbl.init(locale, appId);
+            fbl.initObservers();
+        });
+    </script>
 <?php endif ?>
