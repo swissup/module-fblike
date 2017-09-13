@@ -6,7 +6,7 @@ namespace Swissup\Fblike\Block\Product;
 
 use Magento\Framework\View\Element\Template;
 
-class Button extends Template
+class Button extends \Swissup\Fblike\Block\Button
 {
     /**
      * @param Template\Context $context
@@ -15,25 +15,21 @@ class Button extends Template
      * @param array $data
      */
     public function __construct(
-        Template\Context $context,
+        \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Framework\Registry $registry,
         array $data = []
     ) {
         $this->_coreRegistry = $registry;
-        $this->_product = $this->_coreRegistry->registry('product');
         parent::__construct($context, $data);
     }
 
-    public function getProductUrl()
+    public function getProduct()
     {
-        return $this->_product->getProductUrl();
+        return $this->_coreRegistry->registry('product');
     }
 
-    public function getLikeButtonConfig()
+    public function getConfigSection()
     {
-        return $this->_scopeConfig->getValue(
-            "fblike/product",
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-        );
+        return 'product';
     }
 }

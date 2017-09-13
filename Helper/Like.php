@@ -8,25 +8,56 @@ use Magento\Framework\App\Helper\AbstractHelper;
 
 class Like extends AbstractHelper
 {
-    public function getProductLike($product)
-    {
-        $config = $this->scopeConfig->getValue("fblike/category");
-        $layout = $config["layout"];
-        $action = $config["action"];
-        $colorscheme = $config["colorscheme"];
-        $share = $config["share"];
-        $show_faces = $config["show_faces"];
-        if ($config["enabled"]) {
-            return '
-            <div class="fb-like" data-href="' . $product->getProductUrl() . '"
-                data-layout="' . $layout . '"
-                data-action="' . $action . '"
-                data-colorscheme="' . $colorscheme . '"
-                data-share="' . $share . '"
-                data-show-faces="' . $show_faces . '">
-            </div>';
-        }
 
-        return '';
+    /**
+     * Layout
+     *
+     * @var \Magento\Framework\View\Layout
+     */
+    private $layout;
+
+    /**
+     * [$renderer description]
+     *
+     * @var \Swissup\Fblike\Block\Button
+     */
+    private $renderer;
+
+    public function __construct(
+        \Magento\Framework\View\Layout $layout,
+        \Magento\Framework\App\Helper\Context $context
+    ){
+        $this->layout = $layout;
+        parent::__construct($context);
+    }
+
+    /**
+     * [getProductLike description]
+     * @param  \Magento\Catalog\Model\Product $product
+     * @return string
+     */
+    public function getProductLike(\Magento\Catalog\Model\Product $product)
+    {
+        return $this->renderButton($product, 'category');
+    }
+
+    public function renderButton(
+        \Magento\Catalog\Model\Product$product,
+        string $section
+    ){
+        return $this->_getRenderer()
+            ->setProduct($product)
+            ->setConfigSection($section)
+            ->toHtml();
+    }
+
+    private function _getRenderer()
+    {
+        if (!isset($this->renderer)) {
+            $this->renderer = $this->layout
+                ->createBlock('\Swissup\Fblike\Block\Button')
+                ->setTemplate('button.phtml');
+        }
+        return $this->renderer;
     }
 }
