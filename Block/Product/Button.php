@@ -32,8 +32,8 @@ class Button extends Template
     public function getLikeButtonConfig()
     {
         return $this->_scopeConfig->getValue(
-                "fblike/product",
-                \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-            );
+            "fblike/product",
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
     }
 }

@@ -18,7 +18,7 @@ class Initialize extends \Magento\Framework\View\Element\Template
         return json_encode($params);
     }
 
-    protected function _getConfigScopeStore($configPath)
+    private function _getConfigScopeStore($configPath)
     {
         return $this->_scopeConfig->getValue(
             $configPath,

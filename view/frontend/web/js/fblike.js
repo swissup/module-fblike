@@ -18,7 +18,7 @@ define([
         _loadSDK: function (fbAsyncCallback) {
             var script;
             if (typeof FB == 'undefined') {
-                script = document.createElement( 'script' );
+                script = document.createElement('script');
                 script.type = 'text/javascript';
                 script.src = '//connect.facebook.net/' + this.options.locale + '/sdk.js';
                 script.id = 'facebook-jssdk';
@@ -40,12 +40,12 @@ define([
             this.addObservers();
         },
 
-        addObservers: function() {
-            $('.fbl-custom .like').each(function (){
+        addObservers: function () {
+            $('.fbl-custom .like').each(function () {
                 if ($(this).hasClass("initialized")) {
                     return;
                 }
-                $(this).click(function (){
+                $(this).click(function () {
                     // variable 'this' - element with the observer
                     // call fb dialog to like product
                     FB.ui(
@@ -56,7 +56,7 @@ define([
                                 object: $(this).data('url'),
                             })
                         },
-                        function(response){}
+                        function (response) {}
                     );
                 });
                 $(this).addClass('initialized');
