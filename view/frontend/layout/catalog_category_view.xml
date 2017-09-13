@@ -5,8 +5,8 @@
         <css src="Swissup_Fblike::css/fbl.css"/>
     </head>
     <body>
-        <referenceContainer name="content">
-            <block class="Swissup\Fblike\Block\Product\Button" name="category.facebook.init" template="category/like_init.phtml" />
+        <referenceContainer name="before.body.end">
+            <block class="Swissup\Fblike\Block\Initialize" name="fblike.init" template="initialize.phtml" ifconfig="fblike/category/enabled"/>
         </referenceContainer>
     </body>
 </page>

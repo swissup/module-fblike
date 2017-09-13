@@ -1,7 +1,7 @@
 var config = {
     map: {
         '*': {
-            fbl: 'Swissup_Fblike/js/fbl'
+            fblike: 'Swissup_Fblike/js/fblike'
         }
     }
 };

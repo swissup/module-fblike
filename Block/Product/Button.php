@@ -19,7 +19,6 @@ class Button extends Template
         \Magento\Framework\Registry $registry,
         array $data = []
     ) {
-        $this->_scopeConfig   = $context->getScopeConfig();
         $this->_coreRegistry = $registry;
         $this->_product = $this->_coreRegistry->registry('product');
         parent::__construct($context, $data);
@@ -32,21 +31,9 @@ class Button extends Template
 
     public function getLikeButtonConfig()
     {
-        return $this->_scopeConfig->getValue("fblike/product");
-    }
-
-    public function getFacebookAppId()
-    {
-        return $this->_scopeConfig->getValue("fblike/general/app");
-    }
-
-    public function getButtonLocale()
-    {
-        return $this->_scopeConfig->getValue("fblike/general/locale");
-    }
-
-    public function canShowInCategory()
-    {
-        return $this->_scopeConfig->getValue("fblike/category/enabled");
+        return $this->_scopeConfig->getValue(
+                "fblike/product",
+                \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+            );
     }
 }
