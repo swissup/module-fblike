@@ -5,7 +5,7 @@
     </head>
     <body>
         <referenceContainer name="product.info.social">
-            <block class="Swissup\Fblike\Block\Product\Button" name="product.facebook.like" template="button.phtml" />
+            <block class="Swissup\Fblike\Block\Product\Button" name="product.facebook.like" template="button.phtml" before="-" />
         </referenceContainer>
         <referenceContainer name="before.body.end">
             <block class="Swissup\Fblike\Block\Initialize" name="fblike.init" template="initialize.phtml" ifconfig="fblike/product/enabled"/>
