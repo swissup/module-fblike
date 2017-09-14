@@ -1,48 +1,19 @@
 define([
-    'jquery'
+    'jquery',
+    'facebook'
 ], function ($) {
     'use strict';
 
     $.widget('swissup.fblike', {
 
         options: {
-            appId: '',
-            locale: 'en_US'
+            appId: ''
         },
 
         /**
-         * widget constructor
+         * [_init description]
          */
-        _create: function () {
-            this._loadSDK(this.initializeButtons.bind(this));
-        },
-
-        /**
-         * [_loadSDK description]
-         * @param  {Function} fbAsyncCallback
-         */
-        _loadSDK: function (fbAsyncCallback) {
-            var script;
-
-            if (typeof FB == 'undefined') {
-                script = document.createElement('script');
-                script.type = 'text/javascript';
-                script.src = '//connect.facebook.net/' + this.options.locale + '/sdk.js';
-                script.id = 'facebook-jssdk';
-
-                if (fbAsyncCallback) {
-                    window.fbAsyncInit = fbAsyncCallback;
-                }
-                $('script[type="text/javascript"]').first().before(script);
-            } else {
-                fbAsyncCallback();
-            }
-        },
-
-        /**
-         * [initializeButtons description]
-         */
-        initializeButtons: function () {
+        _init: function () {
             FB.init({
                 appId: this.options.appId,
                 xfbml: true,
