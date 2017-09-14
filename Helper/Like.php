@@ -26,7 +26,7 @@ class Like extends AbstractHelper
     public function __construct(
         \Magento\Framework\View\Layout $layout,
         \Magento\Framework\App\Helper\Context $context
-    ){
+    ) {
         $this->layout = $layout;
         parent::__construct($context);
     }
@@ -42,9 +42,9 @@ class Like extends AbstractHelper
     }
 
     public function renderButton(
-        \Magento\Catalog\Model\Product$product,
+        \Magento\Catalog\Model\Product $product,
         string $section
-    ){
+    ) {
         return $this->_getRenderer()
             ->setProduct($product)
             ->setConfigSection($section)
