@@ -30,7 +30,12 @@ class Button extends \Magento\Framework\View\Element\Template
     {
         $product = $this->getProduct();
         if (isset($product)) {
-            return $product->getProductUrl();
+            $oldRequestPath = $product->getData('request_path');
+            $product->setData('request_path', '');
+            $params = ['_ignore_category' => true];
+            $url = $product->getUrlModel()->getUrl($product, $params);
+            $product->setData('request_path', $oldRequestPath);
+            return $url;
         }
         return '';
     }
