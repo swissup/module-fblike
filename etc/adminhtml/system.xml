@@ -13,10 +13,6 @@
                     <label>Facebook App ID</label>
                     <comment><![CDATA[Get <a href="http://www.facebook.com/developers/createapp.php">Facebook API</a> access info.]]></comment>
                 </field>
-                <field id="locale" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Locale</label>
-                    <source_model>Magento\Config\Model\Config\Source\Locale</source_model>
-                </field>
             </group>
             <group id="product" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Product Page</label>

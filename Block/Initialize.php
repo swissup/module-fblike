@@ -12,8 +12,7 @@ class Initialize extends \Magento\Framework\View\Element\Template
     public function getFacebookOptions()
     {
         $params = [
-            'appId' => $this->_getConfigScopeStore("fblike/general/app"),
-            'locale' => $this->_getConfigScopeStore("fblike/general/locale")
+            'appId' => $this->_getConfigScopeStore("fblike/general/app")
         ];
         return json_encode($params);
     }
