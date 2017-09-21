@@ -43,7 +43,7 @@ class Like extends AbstractHelper
 
     public function renderButton(
         \Magento\Catalog\Model\Product $product,
-        string $section
+        $section
     ) {
         return $this->_getRenderer()
             ->setProduct($product)
