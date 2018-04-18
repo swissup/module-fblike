@@ -1,5 +1,6 @@
 define([
-    'jquery'
+    'jquery',
+    'Magento_Ui/js/lib/view/utils/async'
 ], function ($) {
     'use strict';
 
@@ -22,9 +23,15 @@ define([
                     + document.documentElement.lang.replace('-', '_')
                     +'/sdk.js';
                 $('head').append(s);
-            } else {
-                this.fbInit();
             }
+
+            // listen DOM structure update and reinit FB buttons
+            $.async(
+                {
+                    selector: '.main .products.wrapper'
+                },
+                this.fbInit.bind(this)
+            );
         },
 
         /**
@@ -32,12 +39,14 @@ define([
          * @return {[type]} [description]
          */
         fbInit: function () {
-            FB.init({
-                appId: this.options.appId,
-                xfbml: true,
-                version: 'v2.10'
-            });
-            this.addObservers();
+            if (typeof FB !== 'undefined') {
+                FB.init({
+                    appId: this.options.appId,
+                    xfbml: true,
+                    version: 'v2.10'
+                });
+                this.addObservers();
+            }
         },
 
         /**
