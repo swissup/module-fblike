@@ -39,4 +39,18 @@ class Button extends \Magento\Framework\View\Element\Template
         }
         return '';
     }
+
+    /**
+     * Retrieve script options encoded to json
+     *
+     * @return string
+     */
+    public function getFacebookOptions()
+    {
+        $appId = $this->_scopeConfig->getValue(
+            'fblike/general/app',
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+        return json_encode(['appId' => $appId]);
+    }
 }

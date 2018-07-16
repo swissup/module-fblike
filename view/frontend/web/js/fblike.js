@@ -1,80 +1,54 @@
 define([
     'jquery',
-    'Magento_Ui/js/lib/view/utils/async'
-], function ($) {
+    './fbinit',
+    'jquery/ui'
+], function ($, FB) {
     'use strict';
 
     $.widget('swissup.fblike', {
-
-        options: {
-            appId: ''
-        },
-
         /**
-         * [_init description]
+         * [_create description]
          */
-        _init: function () {
-            if (typeof FB === 'undefined') {
-                // set callback on facebook SDK load
-                window.fbAsyncInit = this.fbInit.bind(this);
-                var s = document.createElement('script');
-                s.type = "text/javascript";
-                s.src = '//connect.facebook.net/'
-                    + document.documentElement.lang.replace('-', '_')
-                    +'/sdk.js';
-                $('head').append(s);
-            }
-
-            // listen DOM structure update and reinit FB buttons
-            $.async(
-                {
-                    selector: '.main .products.wrapper'
-                },
-                this.fbInit.bind(this)
-            );
+        _create: function () {
+            FB.swissupReady($.proxy(this.fbInit, this));
         },
 
         /**
-         * Initialize facebook buttons
-         * @return {[type]} [description]
+         * Bind events
+         */
+        _bind: function () {
+            if (!this.element.hasClass('fbl-ready')) {
+                this.element.addClass('fbl-ready');
+                this._on($('.like', this.element), {
+                    /**
+                     * click listener
+                     */
+                    click: function () {
+                        // variable 'this' - element with the observer
+                        // call fb dialog to like product
+                        // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+                        FB.ui(
+                            {
+                                method: 'share_open_graph',
+                                action_type: 'og.likes',
+                                action_properties: JSON.stringify({
+                                    object: $(this).data('url')
+                                })
+                            },
+                            function (response) {} // eslint-disable-line no-unused-vars
+                        );
+                        // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
+                    }
+                });
+            }
+        },
+
+        /**
+         * Initialize facebook button
          */
         fbInit: function () {
-            if (typeof FB !== 'undefined') {
-                FB.init({
-                    appId: this.options.appId,
-                    xfbml: true,
-                    version: 'v2.10'
-                });
-                this.addObservers();
-            }
-        },
-
-        /**
-         * Add click observer for custom like button
-         */
-        addObservers: function () {
-            $('.fbl-custom .like').each(function () {
-                if ($(this).hasClass('initialized')) {
-                    return;
-                }
-                $(this).click(function () {
-                    // variable 'this' - element with the observer
-                    // call fb dialog to like product
-                    // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
-                    FB.ui(
-                        {
-                            method: 'share_open_graph',
-                            action_type: 'og.likes',
-                            action_properties: JSON.stringify({
-                                object: $(this).data('url')
-                            })
-                        },
-                        function (response) {}
-                    );
-                    // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
-                });
-                $(this).addClass('initialized');
-            });
+            FB.XFBML.parse(this.element.get(0));
+            this._bind();
         }
     });
 

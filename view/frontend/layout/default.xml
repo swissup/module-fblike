@@ -5,8 +5,9 @@
         <css src="Swissup_Fblike::css/fbl.css"/>
     </head>
     <body>
-        <referenceContainer name="before.body.end">
-            <block class="Swissup\Fblike\Block\Initialize" name="fblike.init" template="initialize.phtml" ifconfig="fblike/category/enabled"/>
-        </referenceContainer>
+        <referenceBlock name="head.additional">
+            <block class="Magento\Framework\View\Element\Template" name="meta.facebook.appId" template="Swissup_Fblike::metadata.phtml">
+            </block>
+        </referenceBlock>
     </body>
 </page>

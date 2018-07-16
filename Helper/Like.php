@@ -60,4 +60,12 @@ class Like extends AbstractHelper
         }
         return $this->renderer;
     }
+
+    public function getAppId()
+    {
+        return $appId = $this->scopeConfig->getValue(
+            'fblike/general/app',
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+    }
 }
