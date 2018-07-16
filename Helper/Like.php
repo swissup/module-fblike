@@ -1,7 +1,5 @@
 <?php
-/**
- * Copyright © 2015 Swissup. All rights reserved.
- */
+
 namespace Swissup\Fblike\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
@@ -17,12 +15,16 @@ class Like extends AbstractHelper
     private $layout;
 
     /**
-     * [$renderer description]
+     * Like button renderer
      *
      * @var \Swissup\Fblike\Block\Button
      */
     private $renderer;
 
+    /**
+     * @param \Magento\Framework\View\Layout        $layout
+     * @param \Magento\Framework\App\Helper\Context $context
+     */
     public function __construct(
         \Magento\Framework\View\Layout $layout,
         \Magento\Framework\App\Helper\Context $context
@@ -32,7 +34,8 @@ class Like extends AbstractHelper
     }
 
     /**
-     * [getProductLike description]
+     * Get like FB Like Button html
+     *
      * @param  \Magento\Catalog\Model\Product $product
      * @return string
      */
@@ -41,6 +44,13 @@ class Like extends AbstractHelper
         return $this->renderButton($product, 'category');
     }
 
+    /**
+     * Render FB Like Button
+     *
+     * @param  \Magento\Catalog\Model\Product $product
+     * @param  string                         $section
+     * @return string
+     */
     public function renderButton(
         \Magento\Catalog\Model\Product $product,
         $section
@@ -51,6 +61,11 @@ class Like extends AbstractHelper
             ->toHtml();
     }
 
+    /**
+     * Get like button renderer
+     *
+     * @return \Swissup\Fblike\Block\Button
+     */
     private function _getRenderer()
     {
         if (!isset($this->renderer)) {
@@ -58,9 +73,15 @@ class Like extends AbstractHelper
                 ->createBlock('\Swissup\Fblike\Block\Button')
                 ->setTemplate('button.phtml');
         }
+
         return $this->renderer;
     }
 
+    /**
+     * Get Facebook App Id
+     *
+     * @return string|null
+     */
     public function getAppId()
     {
         return $appId = $this->scopeConfig->getValue(

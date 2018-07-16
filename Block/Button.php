@@ -4,20 +4,35 @@ namespace Swissup\Fblike\Block;
 
 class Button extends \Magento\Framework\View\Element\Template
 {
-
+    /**
+     * @var string
+     */
     private $configSection = 'category';
 
+    /**
+     * Get config section name
+     *
+     * @return string
+     */
     public function getConfigSection()
     {
         return $this->configSection;
     }
 
+    /**
+     * Set confgi section name
+     *
+     * @param string
+     */
     public function setConfigSection($value)
     {
         $this->configSection = $value;
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function getLikeButtonConfig()
     {
         return $this->_scopeConfig->getValue(
@@ -26,6 +41,9 @@ class Button extends \Magento\Framework\View\Element\Template
         );
     }
 
+    /**
+     * @return string
+     */
     public function getProductUrl()
     {
         $product = $this->getProduct();
@@ -37,6 +55,7 @@ class Button extends \Magento\Framework\View\Element\Template
             $product->setData('request_path', $oldRequestPath);
             return $url;
         }
+
         return '';
     }
 

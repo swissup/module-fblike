@@ -1,7 +1,5 @@
 <?php
-/**
- * Copyright © 2015 Swissup. All rights reserved.
- */
+
 namespace Swissup\Fblike\Block\Product;
 
 use Magento\Framework\View\Element\Template;
@@ -10,12 +8,11 @@ class Button extends \Swissup\Fblike\Block\Button
 {
     /**
      * @param Template\Context $context
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param \Magento\Framework\Registry $registry,
      * @param array $data
      */
     public function __construct(
-        \Magento\Framework\View\Element\Template\Context $context,
+        Template\Context $context,
         \Magento\Framework\Registry $registry,
         array $data = []
     ) {
@@ -23,11 +20,17 @@ class Button extends \Swissup\Fblike\Block\Button
         parent::__construct($context, $data);
     }
 
+    /**
+     * @return \Magento\Catalog\Model\Product
+     */
     public function getProduct()
     {
         return $this->_coreRegistry->registry('product');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getConfigSection()
     {
         return 'product';
