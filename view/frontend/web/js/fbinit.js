@@ -5,7 +5,7 @@ define([
 
         var facebookSdk = '//connect.facebook.net/' +
                 document.documentElement.lang.replace('-', '_') +
-                '/sdk.js';
+                '/sdk.js?nomin=1';
 
         return facebookSdk;
     })()
