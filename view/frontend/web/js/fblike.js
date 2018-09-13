@@ -19,26 +19,8 @@ define([
         _bind: function () {
             if (!this.element.hasClass('fbl-ready')) {
                 this.element.addClass('fbl-ready');
-                this._on($('.like', this.element), {
-                    /**
-                     * click listener
-                     */
-                    click: function () {
-                        // variable 'this' - element with the observer
-                        // call fb dialog to like product
-                        // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
-                        FB.ui(
-                            {
-                                method: 'share_open_graph',
-                                action_type: 'og.likes',
-                                action_properties: JSON.stringify({
-                                    object: $(this).data('url')
-                                })
-                            },
-                            function (response) {} // eslint-disable-line no-unused-vars
-                        );
-                        // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
-                    }
+                this._on({
+                    'click .like': this._triggerFbLike
                 });
             }
         },
@@ -49,6 +31,26 @@ define([
         fbInit: function () {
             FB.XFBML.parse(this.element.get(0));
             this._bind();
+        },
+
+        /**
+         * @param  {Event} event
+         */
+        _triggerFbLike: function (event) {
+            console.log('fffff');
+            // call fb dialog to like product
+            // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+            FB.ui(
+                {
+                    method: 'share_open_graph',
+                    action_type: 'og.likes',
+                    action_properties: JSON.stringify({
+                        object: $(event.currentTarget).data('url')
+                    })
+                },
+                function (response) {} // eslint-disable-line no-unused-vars
+            );
+            // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
         }
     });
 
