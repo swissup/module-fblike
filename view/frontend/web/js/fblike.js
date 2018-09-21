@@ -37,7 +37,6 @@ define([
          * @param  {Event} event
          */
         _triggerFbLike: function (event) {
-            console.log('fffff');
             // call fb dialog to like product
             // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
             FB.ui(
