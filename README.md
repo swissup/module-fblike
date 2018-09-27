@@ -4,8 +4,8 @@
 
 ```bash
 cd <magento_root>
-composer config repositories.swissup/fblike vcs git@github.com:swissup/fblike.git
-composer require swissup/fblike
+composer config repositories.swissup composer https://docs.swissuplabs.com/packages/
+composer require swissup/module-fblike
 bin/magento module:enable Swissup_Fblike
 bin/magento setup:upgrade
 ```

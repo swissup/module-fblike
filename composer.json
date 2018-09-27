@@ -1,11 +1,11 @@
 {
-    "name": "swissup/fblike",
+    "name": "swissup/module-fblike",
     "type": "magento2-module",
     "description": "Facebook Like Button for Magento 2",
-    "version": "1.1.4",
+    "version": "1.2.0",
     "license": ["OSL-3.0"],
     "require": {
-        "swissup/core": "*"
+        "swissup/module-core": "^1.7.0"
     },
     "autoload": {
         "files": [ "registration.php" ],
