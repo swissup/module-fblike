@@ -30,6 +30,7 @@ define([
          */
         fbInit: function () {
             FB.XFBML.parse(this.element.get(0));
+            FB.swissupFBInit();
             this._bind();
         },
 
@@ -49,6 +50,7 @@ define([
                 },
                 function (response) {} // eslint-disable-line no-unused-vars
             );
+            FB.swissupFBInit();
             // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
         }
     });

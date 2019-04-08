@@ -13,19 +13,32 @@ define([
     'use strict';
 
     var callbacks = [],
-        isInitialized = false;
+        isInitialized = false,
+        _initParams;
+
+    /**
+     * Get parameters for FB.init
+     * @return {Object}
+     */
+    function _getInitParams() {
+        var fbAppId;
+
+        if (!_initParams) {
+            fbAppId = document.head.querySelector('meta[property="fb:app_id"]');
+            _initParams = {
+                appId: fbAppId ? fbAppId.content : '',
+                xfbml: false,
+                version: 'v3.2'
+            };
+        }
+
+        return _initParams;
+    }
 
     /**
      * Initialize FB SDK after source is loaded
      */
     window.fbAsyncInit = function () {
-        var fbAppId = document.head.querySelector('meta[property="fb:app_id"]');
-
-        FB.init({
-            appId: fbAppId ? fbAppId.content : '',
-            xfbml: false,
-            version: 'v2.10'
-        });
         callbacks.forEach(function (callback) {
             callback();
         });
@@ -42,6 +55,13 @@ define([
         } else {
             callbacks.push(callback);
         }
+    };
+
+    /**
+     * Initialize FB
+     */
+    FB.swissupFBInit = function () {
+        FB.init(_getInitParams());
     };
 
     return FB;
