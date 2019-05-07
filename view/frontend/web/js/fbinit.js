@@ -3,9 +3,15 @@ define([
     (function () {
         'use strict';
 
-        var facebookSdk = '//connect.facebook.net/' +
+        var facebookSdk = '';
+
+        if (typeof FB === 'undefined') {
+            facebookSdk = '//connect.facebook.net/' +
                 document.documentElement.lang.replace('-', '_') +
                 '/sdk.js?nomin=1';
+        } else {
+            FB.swissupThirdpartyInit = true;
+        }
 
         return facebookSdk;
     })()
@@ -13,7 +19,7 @@ define([
     'use strict';
 
     var callbacks = [],
-        isInitialized = false,
+        isInitialized = !!FB.swissupThirdpartyInit,
         _initParams;
 
     /**
@@ -24,7 +30,7 @@ define([
         var fbAppId;
 
         if (!_initParams) {
-            fbAppId = document.head.querySelector('meta[property="fb:app_id"]');
+            fbAppId = document.querySelector('meta[property="fb:app_id"]');
             _initParams = {
                 appId: fbAppId ? fbAppId.content : '',
                 xfbml: false,
