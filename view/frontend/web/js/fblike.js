@@ -1,7 +1,7 @@
 define([
     'jquery',
     './fbinit',
-    'jquery/ui'
+    'Magento_Ui/js/modal/modal' // 2.3.3: create 'jquery-ui-modules/widget' dependency
 ], function ($, FB) {
     'use strict';
 
