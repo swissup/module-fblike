@@ -1,16 +1,37 @@
-define([
-    'jquery',
-    './fbinit',
-    'Magento_Ui/js/modal/modal' // 2.3.3: create 'jquery-ui-modules/widget' dependency
-], function ($, FB) {
+(function (factory) {
+    'use strict';
+
+    if (typeof define === 'function' && define.amd) {
+        define([
+            'jquery',
+            './fbinit',
+            'Magento_Ui/js/modal/modal' // 2.3.3: create 'jquery-ui-modules/widget' dependency
+        ], factory);
+    } else {
+        if (typeof FB !== 'undefined' && FB.swissupReady) {
+            factory($, FB);
+        } else {
+            $(document).on('fblike:ready', function (event, data) {
+                factory($, data.fb);
+            });
+        }
+    }
+}(function ($, FB) {
     'use strict';
 
     $.widget('swissup.fblike', {
+        component: 'Swissup_Fblike/js/fblike',
+
         /**
          * [_create description]
          */
         _create: function () {
             FB.swissupReady($.proxy(this.fbInit, this));
+        },
+
+        destroy: function () {
+            this.element.removeClass('fbl-ready');
+            this._super();
         },
 
         /**
@@ -56,4 +77,4 @@ define([
     });
 
     return $.swissup.fblike;
-});
+}));

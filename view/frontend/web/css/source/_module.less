@@ -1,3 +1,4 @@
+@critical: unsure;
 @fblike-custom-button__height: 20px;
 @fblike-custom-button__width: 20px;
 @fblike-custom-button__margin: 0 6px 0 0;
@@ -11,19 +12,18 @@
 @fblike-custom-button__hover__color: false;
 
 & when (@media-common = true) {
+& when (@critical = unsure), (@critical) {
     .fbl-custom {
         display: inline-block;
         .lib-css(margin, @fblike-custom-button__margin);
 
         .like {
-            cursor: pointer;
             .lib-css(height, @fblike-custom-button__height);
             text-decoration: none;
             display: inline-block;
             vertical-align: middle;
 
             &::before {
-                .lib-css(background, @fblike-custom-button__background);
                 .lib-css(color, @fblike-custom-button__color);
                 .lib-css(content, @fblike-custom-button__content);
                 .lib-css(font-family, @fblike-custom-button__font-family);
@@ -32,14 +32,24 @@
                 .lib-css(height, @fblike-custom-button__height);
                 display: inline-block;
                 text-align: center;
+            }
+        }
+    }
+}
+& when (@critical = unsure), (@critical = false) {
+    .fbl-custom {
+        .like {
+            cursor: pointer;
+            &::before {
+                .lib-css(background, @fblike-custom-button__background);
                 text-rendering: auto;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
             }
-
             &:hover::before {
                 .lib-css(color, @fblike-custom-button__hover__color);
             }
         }
     }
+}
 }
