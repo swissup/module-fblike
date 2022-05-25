@@ -9,6 +9,10 @@
                         <item name="items" xsi:type="array">
                             <item name="Swissup_Fblike/js/fblike" xsi:type="array">
                                 <item name="path" xsi:type="string">Swissup_Fblike/js/fblike</item>
+                                <item name="enabled" xsi:type="helper" helper="Swissup\Breeze\Helper\Config::isAnyEnabled">
+                                    <param name="product">fblike/product/enabled</param>
+                                    <param name="category">fblike/category/enabled</param>
+                                </item>
                                 <item name="import" xsi:type="array">
                                     <item name="fbinit" xsi:type="string">Swissup_Fblike/js/fbinit</item>
                                 </item>
