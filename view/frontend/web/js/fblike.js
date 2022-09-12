@@ -61,7 +61,7 @@
         _triggerFbLike: function (event) {
             // call fb dialog to like product
             // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
-            FB.ui(
+            window.FB.ui(
                 {
                     method: 'share_open_graph',
                     action_type: 'og.likes',
