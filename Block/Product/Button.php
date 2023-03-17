@@ -6,6 +6,7 @@ use Magento\Framework\View\Element\Template;
 
 class Button extends \Swissup\Fblike\Block\Button
 {
+    private $_coreRegistry;
     /**
      * @param Template\Context $context
      * @param \Magento\Framework\Registry $registry,
