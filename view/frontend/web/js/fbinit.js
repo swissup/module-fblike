@@ -15,8 +15,10 @@
     if (typeof define === 'function' && define.amd) {
         define([facebookSdk], factory);
     } else {
-        $.loadScript(facebookSdk, function () {
-            $(document).trigger('fblike:ready', {fb: factory()});
+        $(document).on('breeze:load', function () {
+            $.loadScript(facebookSdk, function () {
+                $(document).trigger('fblike:ready', {fb: factory()});
+            });
         });
     }
 }(function () {
